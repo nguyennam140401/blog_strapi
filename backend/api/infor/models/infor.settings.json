@@ -1,0 +1,33 @@
+{
+  "kind": "collectionType",
+  "collectionName": "infors",
+  "info": {
+    "name": "infor"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "address": {
+      "type": "string"
+    },
+    "linkFacebook": {
+      "type": "string"
+    },
+    "linkGmail": {
+      "type": "string"
+    },
+    "linkYoutube": {
+      "type": "string"
+    },
+    "phone": {
+      "type": "string"
+    }
+  }
+}
