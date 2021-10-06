@@ -1,0 +1,7 @@
+.home {
+    & > * {
+        &:nth-child(2n + 1) {
+            background-color: var(--bg-light);
+        }
+    }
+}
