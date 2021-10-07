@@ -47,13 +47,13 @@ const Footer = () => {
                             <div className="follow">
                                 <strong>Liên kết: </strong>
                                 <Link to={inforState.linkFacebook}>
-                                    <i class="fab fa-facebook"></i>
+                                    <i className="fab fa-facebook"></i>
                                 </Link>
                                 <Link to={inforState.linkGmail}>
-                                    <i class="far fa-envelope"></i>
+                                    <i className="far fa-envelope"></i>
                                 </Link>
                                 <Link to={inforState.linkYoutube}>
-                                    <i class="fab fa-youtube"></i>
+                                    <i className="fab fa-youtube"></i>
                                 </Link>
                             </div>
                         </div>

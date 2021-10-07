@@ -31,6 +31,10 @@ export const searchPost = async (text) => {
     const res = await axios.get(`${uri}/posts?title_contains=${text}`)
     return res.data
 }
+export const countPost = async () => {
+    const res = await axios.get(`${uri}/posts/count`)
+    return res.data
+}
 export const getFeatured = async () => {
     const res = await axios.get(`${uri}/featureds`)
     return res.data

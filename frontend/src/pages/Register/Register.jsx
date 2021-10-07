@@ -1,8 +1,11 @@
-import React, { Fragment, useState } from 'react'
-import { Link } from 'react-router-dom'
+import React, { Fragment, useState, useContext } from 'react'
+import { Link, useHistory } from 'react-router-dom'
 import './Register.scss'
 import { register } from '../../util/api'
+import AlertMessage from '../../components/AlertMessage/AlertMessage'
+import { AlertContext } from '../../context/AlertContext'
 const Register = () => {
+    const { alertContextState, setAlertContextState } = useContext(AlertContext)
     const [dataFormState, setDataFormState] = useState({
         username: '',
         email: '',
@@ -15,6 +18,7 @@ const Register = () => {
         password: false,
         confirmPassword: false,
     })
+    const history = useHistory()
     const changeInput = (event) => {
         const field = event.target.name
         const value = event.target.value
@@ -25,15 +29,46 @@ const Register = () => {
     }
     const submit = async (event) => {
         event.preventDefault()
+        setAlertContextState({ ...alertContextState, isDisplay: true })
         if (dataFormState.password !== dataFormState.confirmPassword) {
             window.alert('Password not match with confirm password')
             return
         }
-        const res = await register(dataFormState)
-        console.log(res)
+        try {
+            const res = await register(dataFormState)
+            await setAlertContextState({
+                ...alertContextState,
+                status: true,
+                isDisplay: true,
+                message: 'Đăng kí thành công',
+                isLoading: false,
+            })
+            setDataFormState({
+                username: '',
+                email: '',
+                password: '',
+                confirmPassword: '',
+            })
+            history.push('/login')
+            setTimeout(function () {
+                setAlertContextState({ ...alertContextState, isDisplay: false })
+            }, 2000)
+        } catch (error) {
+            console.log(error)
+            setAlertContextState({
+                ...alertContextState,
+                isDisplay: true,
+                isLoading: false,
+                message: 'Loi gi do',
+            })
+            setTimeout(function () {
+                setAlertContextState({ ...alertContextState, isDisplay: false })
+            }, 2000)
+        }
     }
     return (
         <Fragment>
+            <AlertMessage />
             <div className="register">
                 <h3>Register</h3>
                 <form onSubmit={submit} method="post">

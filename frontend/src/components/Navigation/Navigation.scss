@@ -16,7 +16,7 @@
     .search {
         position: relative;
         input {
-            width: 300px;
+            width: 280px;
             padding: 0.25rem 0.7rem;
             border-radius: var(--br);
             border: none;
@@ -77,10 +77,13 @@
             margin: 0;
             li {
                 padding: 0 20px;
+                p,
                 a {
                     color: #fff;
                     text-decoration: none;
                     font-size: 1.2rem;
+                    margin: 0;
+                    cursor: pointer;
                 }
                 position: relative;
                 ul.child {

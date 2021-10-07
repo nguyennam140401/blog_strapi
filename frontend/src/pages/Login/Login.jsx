@@ -19,9 +19,13 @@ const Login = () => {
     }
     const submit = async (event) => {
         event.preventDefault()
-        const res = await login(dataFormState)
-        setAuthToken(res.jwt)
-        console.log(res)
+        try {
+            const res = await login(dataFormState)
+            localStorage.setItem('blog_strapi_jwt', res.jwt)
+            setAuthToken(res.jwt)
+        } catch (error) {
+            console.log(error)
+        }
     }
     return (
         <Fragment>

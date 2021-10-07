@@ -17,6 +17,8 @@ const Home = () => {
             const res2 = await api.getCategory()
             setCarouselState(res)
             setCategoryState(res2)
+            const res3 = await api.countPost()
+            console.log(res)
         } catch (error) {
             console.log(error)
         }

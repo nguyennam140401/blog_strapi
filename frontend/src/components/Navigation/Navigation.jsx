@@ -2,6 +2,7 @@ import React, { Fragment, useEffect, useState } from 'react'
 import './Navigation.scss'
 import { Link } from 'react-router-dom'
 import * as api from '../../util/api'
+import setAuthToken from '../../util/setAuthToken'
 const Navigation = () => {
     const [categoryState, setCategoryState] = useState([])
     const [textSearchState, setTextSearchState] = useState('')
@@ -23,6 +24,10 @@ const Navigation = () => {
             setSearchResult([])
         }
     }, [textSearchState])
+    const logout = () => {
+        setAuthToken('')
+        localStorage.removeItem('blog_strapi_jwt')
+    }
     return (
         <Fragment>
             <div className="navigation">
@@ -104,9 +109,16 @@ const Navigation = () => {
                         <li>
                             <Link to="/about">About Us</Link>
                         </li>
-                        <li>
-                            <Link to="/login">Login</Link>
-                        </li>
+
+                        {localStorage.getItem('blog_strapi_jwt') !== '' ? (
+                            <li onClick={logout}>
+                                <Link to="/">Logout</Link>
+                            </li>
+                        ) : (
+                            <li>
+                                <Link to="/login">Login</Link>
+                            </li>
+                        )}
                     </ul>
                 </div>
             </div>
