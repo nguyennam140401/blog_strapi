@@ -1,7 +1,7 @@
 import React, { Fragment, useEffect, useState } from 'react'
 import { getInfor } from '../../util/api'
 import Link from 'next/link'
-import Style from './style.js'
+import { Style } from './style.js'
 const Footer = () => {
     const [inforState, setInforState] = useState(null)
     useEffect(async () => {

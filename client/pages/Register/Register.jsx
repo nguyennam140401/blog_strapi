@@ -1,6 +1,6 @@
 import React, { Fragment, useState, useContext } from 'react'
 import { Link, useHistory } from 'react-router-dom'
-import Style from './style.js'
+import { Style } from './style.js'
 import { register } from '../../util/api'
 import AlertMessage from '../../components/AlertMessage/AlertMessage'
 import { AlertContext } from '../../context/AlertContext'

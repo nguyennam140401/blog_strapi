@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-export default styled.div`
+export const Style = styled.div`
     .category_blog {
         padding: 3rem var(--pd);
         // padding-top: 3rem;

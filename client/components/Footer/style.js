@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-export default styled.div`
+export const Style = styled.div`
     .footer {
         padding: var(--pd);
         display: flex;

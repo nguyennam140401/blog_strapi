@@ -1,5 +1,5 @@
-import styled from './styled-components/'
-export default styled.div`
+import styled from 'styled-components'
+export const Style = styled.div`
     .sidebar {
         border-left: 1px solid #ccc;
         padding-left: 1rem;
@@ -28,14 +28,14 @@ export default styled.div`
                     text-decoration: none;
                     color: #000;
                     .img {
-                        // width: 100px;
-                        // height: 100px;
+                        width: 100px;
+                        height: 100px;
                         flex: 1;
                         object-fit: contain;
                         img {
-                            // object-fit: center;
+                            object-fit: center;
                             width: 100%;
-                            // aspect-ratio: 1;
+                            aspect-ratio: 1;
                         }
                         margin-right: 1rem;
                     }

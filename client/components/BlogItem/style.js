@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-export default styled.div`
+export const Style = styled.div`
     .blogItem {
         margin: 1rem;
         border: 1px solid rgba(0, 0, 0, 0.1);

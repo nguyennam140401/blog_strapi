@@ -1,6 +1,6 @@
 import React, { Fragment, useContext } from 'react'
 import { AlertContext } from '../../context/AlertContext'
-import Style from './style.js'
+import { Style } from './style.js'
 const AlertMessage = () => {
     const { alertContextState, setAlertContextState } = useContext(AlertContext)
     return (

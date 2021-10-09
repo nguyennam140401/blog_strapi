@@ -1,7 +1,7 @@
 import React, { Fragment, useState, useEffect } from 'react'
 import { getFeatured } from '../../util/api'
 import ReactMarkdown from 'react-markdown'
-import Style from './style'
+import { Style } from './style'
 const Featured = () => {
     const [featuredState, setFeaturedState] = useState([])
     useEffect(async () => {

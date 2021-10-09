@@ -1,5 +1,5 @@
 import React, { Fragment } from 'react'
-import Style from './style.js'
+import { Style } from './style.js'
 import ReactMarkdown from 'react-markdown'
 const BlogDetail = ({ data }) => {
     return (

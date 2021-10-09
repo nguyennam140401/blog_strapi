@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-export default styled.div`
+export const Style = styled.div`
     .login {
         display: flex;
         height: 100vh;

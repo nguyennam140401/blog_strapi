@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-export default styled.div`
+export const Style = styled.div`
     .alert_message {
         padding: 1rem 2rem;
         position: fixed;

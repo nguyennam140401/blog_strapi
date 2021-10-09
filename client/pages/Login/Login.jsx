@@ -1,6 +1,6 @@
 import React, { Fragment, useState } from 'react'
 import Link from 'next/link'
-import Style from './style.scss'
+import { Style } from './style.scss'
 import { login } from '../../util/api'
 import setAuthToken from '../../util/setAuthToken'
 const Login = () => {

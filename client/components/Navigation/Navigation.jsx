@@ -1,5 +1,5 @@
 import React, { Fragment, useEffect, useState } from 'react'
-import Style from './style.js'
+import { Style } from './style.js'
 import Link from 'next/link'
 import * as api from '../../util/api'
 import setAuthToken from '../../util/setAuthToken'
@@ -24,10 +24,10 @@ const Navigation = () => {
             setSearchResult([])
         }
     }, [textSearchState])
-    const logout = () => {
-        setAuthToken('')
-        localStorage.removeItem('blog_strapi_jwt')
-    }
+    // const logout = () => {
+    //     setAuthToken('')
+    //     window.localStorage.removeItem('blog_strapi_jwt')
+    // }
     return (
         <Fragment>
             <Style>
@@ -115,7 +115,7 @@ const Navigation = () => {
                                 <Link href="/about">About Us</Link>
                             </li>
 
-                            {localStorage.getItem('blog_strapi_jwt') !== '' ? (
+                            {/* {localStorage.getItem('blog_strapi_jwt') !== '' ? (
                                 <li onClick={logout}>
                                     <Link href="/">Logout</Link>
                                 </li>
@@ -123,7 +123,7 @@ const Navigation = () => {
                                 <li>
                                     <Link href="/login">Login</Link>
                                 </li>
-                            )}
+                            )} */}
                         </ul>
                     </div>
                 </div>

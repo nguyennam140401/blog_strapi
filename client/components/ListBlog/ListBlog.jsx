@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react'
 import BlogItem from '../BlogItem/BlogItem'
-import Style from './ListBlog.js'
+import { Style } from './style.js'
 
 const ListBlog = ({ data, limit }) => {
     if (data.length === 0) return <Fragment>Chưa có bài viết nào</Fragment>
