@@ -9,7 +9,6 @@ const Navigation = () => {
     const [searchResult, setSearchResult] = useState([])
     useEffect(async () => {
         const res = await api.getCategory()
-        console.log(res)
         setCategoryState(res)
     }, [])
     const search = async () => {
@@ -17,12 +16,15 @@ const Navigation = () => {
 
         setSearchResult(res)
     }
-    useEffect(async () => {
-        if (textSearchState !== '') {
-            await search()
-        } else {
-            setSearchResult([])
+    useEffect(() => {
+        const solve = async () => {
+            if (textSearchState !== '') {
+                await search()
+            } else {
+                setSearchResult([])
+            }
         }
+        solve()
     }, [textSearchState])
     // const logout = () => {
     //     setAuthToken('')
@@ -59,24 +61,26 @@ const Navigation = () => {
                                             <Fragment key={idx}>
                                                 <li>
                                                     <Link
-                                                        to={`/blogDetail/${item.seo}`}
+                                                        href={`/blogDetail/${item.seo}`}
                                                     >
-                                                        <div className="result_img">
-                                                            <img
-                                                                src={`http://localhost:1337${item.image[0].url}`}
-                                                                alt=""
-                                                            />
-                                                        </div>
-                                                        <div className="result_contain">
-                                                            <h5>
-                                                                {item.title}
-                                                            </h5>
-                                                            <p>
-                                                                {
-                                                                    item.description
-                                                                }
-                                                            </p>
-                                                        </div>
+                                                        <a>
+                                                            <div className="result_img">
+                                                                <img
+                                                                    src={`http://localhost:1337${item.image[0].url}`}
+                                                                    alt=""
+                                                                />
+                                                            </div>
+                                                            <div className="result_contain">
+                                                                <h5>
+                                                                    {item.title}
+                                                                </h5>
+                                                                <p>
+                                                                    {
+                                                                        item.description
+                                                                    }
+                                                                </p>
+                                                            </div>
+                                                        </a>
                                                     </Link>
                                                 </li>
                                             </Fragment>
@@ -102,7 +106,7 @@ const Navigation = () => {
                                                         <Link
                                                             href={`/blog/${item.seo}`}
                                                         >
-                                                            {item.name}
+                                                            <a>{item.name}</a>
                                                         </Link>
                                                     </li>
                                                 </Fragment>
