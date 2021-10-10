@@ -6,9 +6,9 @@ import Footer from '../components/Footer/Footer'
 import { Fragment } from 'react'
 import Head from 'next/head'
 import Loading from '../components/Loading/Loading'
-import { Suspense, lazy } from 'react'
+import { useContext } from 'react'
+import AuthContextProvider from '../context/AuthContext'
 function MyApp({ Component, pageProps }) {
-    const Main = lazy(() => <Component {...pageProps}></Component>)
     return (
         <Fragment>
             <Head>
@@ -19,12 +19,13 @@ function MyApp({ Component, pageProps }) {
                     crossorigin="anonymous"
                 />
             </Head>
-            <Navigation />
-            <Suspense fallback={Loading}>
-                {/* <Component {...pageProps} /> */}
-                <Main></Main>
-            </Suspense>
-            <Footer></Footer>
+            <AuthContextProvider>
+                <Navigation />
+
+                <Component {...pageProps} />
+
+                <Footer></Footer>
+            </AuthContextProvider>
         </Fragment>
     )
 }

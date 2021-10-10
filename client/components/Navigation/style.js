@@ -18,7 +18,7 @@ export const Style = styled.div`
         .search {
             position: relative;
             input {
-                width: 400px;
+                width: 350px;
                 padding: 0.25rem 0.7rem;
                 border-radius: var(--br);
                 border: none;
@@ -37,8 +37,9 @@ export const Style = styled.div`
                     list-style: none;
                     padding: 0;
                     li {
-                        // width: max-content;
+                        /* width: max-content; */
                         padding: 0 1rem;
+                        /* overflow: hidden; */
                         &:hover {
                             background-color: var(--primary-color);
                         }
@@ -53,7 +54,14 @@ export const Style = styled.div`
                             }
                             .result_contain {
                                 padding: 1rem;
-                                h3 {
+                                width: 100%;
+                                word-break: break-word;
+                                h5 {
+                                    -webkit-line-clamp: 2;
+                                    -webkit-box-orient: vertical;
+                                    overflow: hidden;
+                                    display: -webkit-box;
+                                    padding: unset;
                                 }
                                 p {
                                     -webkit-line-clamp: 1;

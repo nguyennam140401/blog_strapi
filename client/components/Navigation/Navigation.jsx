@@ -118,7 +118,9 @@ const Navigation = () => {
                             <li>
                                 <Link href="/about">About Us</Link>
                             </li>
-
+                            <li>
+                                <Link href="/login">Login</Link>
+                            </li>
                             {/* {localStorage.getItem('blog_strapi_jwt') !== '' ? (
                                 <li onClick={logout}>
                                     <Link href="/">Logout</Link>
