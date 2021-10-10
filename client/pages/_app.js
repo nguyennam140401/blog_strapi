@@ -5,7 +5,10 @@ import Navigation from '../components/Navigation/Navigation'
 import Footer from '../components/Footer/Footer'
 import { Fragment } from 'react'
 import Head from 'next/head'
+import Loading from '../components/Loading/Loading'
+import { Suspense, lazy } from 'react'
 function MyApp({ Component, pageProps }) {
+    const Main = lazy(() => <Component {...pageProps}></Component>)
     return (
         <Fragment>
             <Head>
@@ -17,7 +20,10 @@ function MyApp({ Component, pageProps }) {
                 />
             </Head>
             <Navigation />
-            <Component {...pageProps} />
+            <Suspense fallback={Loading}>
+                {/* <Component {...pageProps} /> */}
+                <Main></Main>
+            </Suspense>
             <Footer></Footer>
         </Fragment>
     )
