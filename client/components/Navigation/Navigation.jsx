@@ -3,7 +3,9 @@ import { Style } from './style.js'
 import Link from 'next/link'
 import * as api from '../../util/api'
 import setAuthToken from '../../util/setAuthToken'
+import axios from 'axios'
 const Navigation = () => {
+    // console.log(category_static)
     const [categoryState, setCategoryState] = useState([])
     const [textSearchState, setTextSearchState] = useState('')
     const [searchResult, setSearchResult] = useState([])

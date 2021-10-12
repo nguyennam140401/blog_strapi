@@ -87,6 +87,7 @@ export const Style = styled.div`
                 margin: 0;
                 li {
                     padding: 0 20px;
+                    width: max-content;
                     p,
                     a {
                         color: #fff;

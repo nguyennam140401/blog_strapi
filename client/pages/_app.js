@@ -3,11 +3,10 @@ import '../styles/App.css'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import Navigation from '../components/Navigation/Navigation'
 import Footer from '../components/Footer/Footer'
-import { Fragment } from 'react'
+import { Fragment, useContext } from 'react'
 import Head from 'next/head'
-import Loading from '../components/Loading/Loading'
-import { useContext } from 'react'
 import AuthContextProvider from '../context/AuthContext'
+import CategoryContextProvider from '../context/CategoryContext'
 function MyApp({ Component, pageProps }) {
     return (
         <Fragment>
@@ -20,14 +19,15 @@ function MyApp({ Component, pageProps }) {
                 />
             </Head>
             <AuthContextProvider>
-                <Navigation />
+                <CategoryContextProvider>
+                    <Navigation />
 
-                <Component {...pageProps} />
+                    <Component {...pageProps} />
 
-                <Footer></Footer>
+                    <Footer></Footer>
+                </CategoryContextProvider>
             </AuthContextProvider>
         </Fragment>
     )
 }
-
 export default MyApp
