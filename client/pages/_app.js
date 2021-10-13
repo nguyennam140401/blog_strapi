@@ -8,6 +8,7 @@ import Head from 'next/head'
 import AuthContextProvider from '../context/AuthContext'
 import CategoryContextProvider from '../context/CategoryContext'
 function MyApp({ Component, pageProps }) {
+    const getLayout = Component.getLayout || ((page) => page)
     return (
         <Fragment>
             <Head>
@@ -21,9 +22,7 @@ function MyApp({ Component, pageProps }) {
             <AuthContextProvider>
                 <CategoryContextProvider>
                     <Navigation />
-
-                    <Component {...pageProps} />
-
+                    {getLayout(<Component {...pageProps} />)}
                     <Footer></Footer>
                 </CategoryContextProvider>
             </AuthContextProvider>

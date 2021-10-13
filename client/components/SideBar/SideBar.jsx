@@ -34,7 +34,7 @@ const SideBar = ({ id }) => {
                         {postState.length > 0
                             ? postState.slice(0, 4).map((item, idx) => {
                                   return (
-                                      <Fragment>
+                                      <Fragment key={idx}>
                                           <li>
                                               <Link
                                                   href={`/blogDetail/${item.seo}`}
