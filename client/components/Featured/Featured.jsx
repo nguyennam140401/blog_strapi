@@ -4,13 +4,16 @@ import ReactMarkdown from 'react-markdown'
 import { Style } from './style'
 const Featured = () => {
     const [featuredState, setFeaturedState] = useState([])
-    useEffect(async () => {
-        try {
-            const res = await getFeatured()
-            setFeaturedState(res)
-        } catch (error) {
-            console.log(error)
+    useEffect(() => {
+        const solve = async () => {
+            try {
+                const res = await getFeatured()
+                setFeaturedState(res)
+            } catch (error) {
+                console.log(error)
+            }
         }
+        solve()
     }, [])
     return (
         <Style>

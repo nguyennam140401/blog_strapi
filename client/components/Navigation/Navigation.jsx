@@ -9,9 +9,12 @@ const Navigation = () => {
     const [categoryState, setCategoryState] = useState([])
     const [textSearchState, setTextSearchState] = useState('')
     const [searchResult, setSearchResult] = useState([])
-    useEffect(async () => {
-        const res = await api.getCategory()
-        setCategoryState(res)
+    useEffect(() => {
+        const solve = async () => {
+            const res = await api.getCategory()
+            setCategoryState(res)
+        }
+        solve()
     }, [])
     const search = async () => {
         const res = await api.searchPost(textSearchState)

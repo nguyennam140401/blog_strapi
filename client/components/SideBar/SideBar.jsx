@@ -5,14 +5,17 @@ import Link from 'next/link'
 const SideBar = ({ id }) => {
     const [postState, setPostState] = useState([])
     const [textSearch, setTextSearch] = useState('')
-    useEffect(async () => {
-        try {
-            const res = await getPostOfCategory(id, textSearch)
-            console.log(id, res)
-            setPostState(res)
-        } catch (error) {
-            console.log(error)
+    useEffect(() => {
+        const solve = async () => {
+            try {
+                const res = await getPostOfCategory(id, textSearch)
+                console.log(id, res)
+                setPostState(res)
+            } catch (error) {
+                console.log(error)
+            }
         }
+        solve()
     }, [id, textSearch])
     return (
         <Fragment>

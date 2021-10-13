@@ -4,13 +4,16 @@ import Link from 'next/link'
 import { Style } from './style.js'
 const Footer = () => {
     const [inforState, setInforState] = useState(null)
-    useEffect(async () => {
-        try {
-            const res = await getInfor()
-            setInforState(res)
-        } catch (error) {
-            console.log(error)
+    useEffect(() => {
+        const solve = async () => {
+            try {
+                const res = await getInfor()
+                setInforState(res)
+            } catch (error) {
+                console.log(error)
+            }
         }
+        solve()
     }, [])
     return (
         <Fragment>

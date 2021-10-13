@@ -4,14 +4,17 @@ import ListBlog from '../../components/ListBlog/ListBlog'
 import * as api from '../../util/api'
 const BlogPage = () => {
     const [postState, setPostState] = useState([])
-    useEffect(async () => {
-        try {
-            const res = await api.getPost()
-            console.log(res)
-            setPostState(res)
-        } catch (error) {
-            console.log(error)
+    useEffect(() => {
+        const solve = async () => {
+            try {
+                const res = await api.getPost()
+                console.log(res)
+                setPostState(res)
+            } catch (error) {
+                console.log(error)
+            }
         }
+        solve()
     }, [])
     return (
         <Fragment>
