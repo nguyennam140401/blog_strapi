@@ -9,7 +9,23 @@ const AlertContextProvider = ({ children }) => {
         isDisplay: false,
         message: '',
     })
-    const alertContextData = { alertContextState, setAlertContextState }
+    const setAlertContext = (data) => {
+        setAlertContextState({
+            ...alertContextState,
+            isLoading: false,
+            isDisplay: true,
+            ...data,
+        })
+        setTimeout(() => {
+            setAlertContextState({
+                isLoading: true,
+                status: null,
+                isDisplay: false,
+                message: '',
+            })
+        }, 2000)
+    }
+    const alertContextData = { alertContextState, setAlertContext }
     return (
         <AlertContext.Provider value={alertContextData}>
             {children}

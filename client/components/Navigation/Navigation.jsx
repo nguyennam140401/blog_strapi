@@ -1,14 +1,14 @@
-import React, { Fragment, useEffect, useState } from 'react'
+import React, { Fragment, useEffect, useState, useContext } from 'react'
 import { Style } from './style.js'
 import Link from 'next/link'
 import * as api from '../../util/api'
-import setAuthToken from '../../util/setAuthToken'
-import axios from 'axios'
+import { AuthContext } from '../../context/AuthContext'
+
 const Navigation = () => {
-    // console.log(category_static)
     const [categoryState, setCategoryState] = useState([])
     const [textSearchState, setTextSearchState] = useState('')
     const [searchResult, setSearchResult] = useState([])
+    const { authState, logoutUser } = useContext(AuthContext)
     useEffect(() => {
         const solve = async () => {
             const res = await api.getCategory()
@@ -123,18 +123,20 @@ const Navigation = () => {
                             <li>
                                 <Link href="/about">About Us</Link>
                             </li>
-                            <li>
-                                <Link href="/login">Login</Link>
-                            </li>
-                            {/* {localStorage.getItem('blog_strapi_jwt') !== '' ? (
-                                <li onClick={logout}>
-                                    <Link href="/">Logout</Link>
-                                </li>
+                            {/* <li>
+                                {isAuthenticated === true ? (
+                                    <Link href="/logout">Logout</Link>
+                                ) : (
+                                    <Link href="/login">Login</Link>
+                                )}
+                            </li> */}
+                            {authState.isAuthenticated ? (
+                                <li onClick={logoutUser}>Logout</li>
                             ) : (
                                 <li>
                                     <Link href="/login">Login</Link>
                                 </li>
-                            )} */}
+                            )}
                         </ul>
                     </div>
                 </div>

@@ -88,6 +88,11 @@ export const Style = styled.div`
                 li {
                     padding: 0 20px;
                     width: max-content;
+                    color: #fff;
+                    text-decoration: none;
+                    font-size: 1.2rem;
+                    margin: 0;
+                    cursor: pointer;
                     p,
                     a {
                         color: #fff;
@@ -107,9 +112,8 @@ export const Style = styled.div`
                         width: max-content;
                         z-index: 1000;
                         li {
-                            // width: max-content;
                             padding: 20px;
-                            // width: 100%;
+                            width: 100%;
                             text-align: right;
                             a {
                                 width: 100%;

@@ -1,15 +1,20 @@
 import React, { Fragment } from 'react'
 import { Style } from './style.js'
 import Link from 'next/link'
+import Image from 'next/image'
 // import ReactMarkdown from 'react-markdown'
 const BlogItem = ({ data }) => {
+    const src = `http://localhost:1337${data.image[0].url}`
     return (
         <Fragment>
             <Style>
                 <div className="blogItem">
                     <div className="blog_img">
-                        <img
-                            src={`http://localhost:1337${data.image[0].url}`}
+                        <Image
+                            loader={() => src}
+                            layout="fill"
+                            objectFit="cover"
+                            src={src}
                             alt={data.title}
                         />
                     </div>

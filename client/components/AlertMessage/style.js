@@ -5,6 +5,7 @@ export const Style = styled.div`
         position: fixed;
         background-color: var(--light-color);
         left: 50%;
+        top: 80px;
         transform: translateX(-50%);
         border-radius: var(--br);
         animation: alertAnimate ease-in-out 0.6s;

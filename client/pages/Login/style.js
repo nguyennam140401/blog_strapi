@@ -16,6 +16,9 @@ export const Style = styled.div`
                 border: none;
                 outline: none;
             }
+            input {
+                width: 100%;
+            }
             button {
                 background-color: var(--light-color);
                 padding: 0.2rem 2.5rem;

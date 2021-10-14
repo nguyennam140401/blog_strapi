@@ -1,9 +1,13 @@
-import React, { Fragment, useState } from 'react'
+import React, { Fragment, useState, useContext } from 'react'
 import Link from 'next/link'
-import { Style } from './style.scss'
-import { login } from '../../util/api'
-import setAuthToken from '../../util/setAuthToken'
+import { useRouter } from 'next/router'
+import { Style } from './style.js'
+import { AuthContext } from '../../context/AuthContext'
+import { AlertContext } from '../../context/AlertContext.js'
 const Login = () => {
+    const router = useRouter()
+    const { authState, loginUser } = useContext(AuthContext)
+    const { setAlertContext } = useContext(AlertContext)
     const [dataFormState, setDataFormState] = useState({
         identifier: '',
         password: '',
@@ -20,9 +24,20 @@ const Login = () => {
     const submit = async (event) => {
         event.preventDefault()
         try {
-            const res = await login(dataFormState)
-            localStorage.setItem('blog_strapi_jwt', res.jwt)
-            setAuthToken(res.jwt)
+            const res = await loginUser(dataFormState)
+            if (res.success === true) {
+                setAlertContext({
+                    status: true,
+                    message: 'Dang nhap thanh cong',
+                })
+                router.push('/')
+                console.log(res)
+            } else {
+                setAlertContext({
+                    status: false,
+                    message: 'Dang nhap that bai',
+                })
+            }
         } catch (error) {
             console.log(error)
         }

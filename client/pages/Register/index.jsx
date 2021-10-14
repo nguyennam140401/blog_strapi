@@ -1,11 +1,13 @@
 import React, { Fragment, useState, useContext } from 'react'
-import { Link, useHistory } from 'react-router-dom'
+import { useRouter } from 'next/router'
+import Link from 'next/link'
 import { Style } from './style.js'
 import { register } from '../../util/api'
 import AlertMessage from '../../components/AlertMessage/AlertMessage'
 import { AlertContext } from '../../context/AlertContext'
 const Register = () => {
-    const { alertContextState, setAlertContextState } = useContext(AlertContext)
+    const router = useRouter()
+    const { alertContextState, setAlertContext } = useContext(AlertContext)
     const [dataFormState, setDataFormState] = useState({
         username: '',
         email: '',
@@ -18,7 +20,7 @@ const Register = () => {
         password: false,
         confirmPassword: false,
     })
-    const history = useHistory()
+
     const changeInput = (event) => {
         const field = event.target.name
         const value = event.target.value
@@ -29,7 +31,7 @@ const Register = () => {
     }
     const submit = async (event) => {
         event.preventDefault()
-        setAlertContextState({ ...alertContextState, isDisplay: true })
+        setAlertContext({ isDisplay: true })
         if (dataFormState.password !== dataFormState.confirmPassword) {
             window.alert('Password not match with confirm password')
             return
@@ -37,7 +39,6 @@ const Register = () => {
         try {
             const res = await register(dataFormState)
             await setAlertContextState({
-                ...alertContextState,
                 status: true,
                 isDisplay: true,
                 message: 'Đăng kí thành công',
@@ -49,20 +50,19 @@ const Register = () => {
                 password: '',
                 confirmPassword: '',
             })
-            history.push('/login')
+            router.push('/login')
             setTimeout(function () {
-                setAlertContextState({ ...alertContextState, isDisplay: false })
+                setAlertContext({ isDisplay: false })
             }, 2000)
         } catch (error) {
             console.log(error)
-            setAlertContextState({
-                ...alertContextState,
+            setAlertContext({
                 isDisplay: true,
                 isLoading: false,
                 message: 'Loi gi do',
             })
             setTimeout(function () {
-                setAlertContextState({ ...alertContextState, isDisplay: false })
+                setAlertContext({ isDisplay: false })
             }, 2000)
         }
     }

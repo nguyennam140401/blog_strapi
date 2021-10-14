@@ -1,17 +1,27 @@
 import { createContext, useState } from 'react'
 import { login, register } from '../util/api'
 export const AuthContext = createContext()
-import setAuthToken from '../util/api'
+import setAuthToken from '../util/setAuthToken'
 const AuthContextProvider = ({ children }) => {
     const [authState, setAuthState] = useState({
-        isLoading: false,
+        // isLoading: false,
         isAuthenticated: false,
         user: null,
+        jwt: null,
     })
     const loginUser = async (data) => {
         try {
             const response = await login(data)
-            return response
+            console.log(response)
+            setAuthToken(response.jwt)
+            console.log(authState)
+            setAuthState({
+                isAuthenticated: true,
+                user: response.user,
+                jwt: response.jwt,
+            })
+            console.log(authState)
+            return { success: true, data: response }
         } catch (error) {
             console.log(error)
             return { success: false, message: error.message }
@@ -28,6 +38,13 @@ const AuthContextProvider = ({ children }) => {
     }
     const logoutUser = () => {
         localStorage.removeItem('tokenUser')
+        setAuthToken('')
+        setAuthState({
+            // isLoading: false,
+            isAuthenticated: false,
+            user: null,
+            jwt: null,
+        })
     }
     const AuthContextData = { authState, loginUser, registerUser, logoutUser }
     return (
