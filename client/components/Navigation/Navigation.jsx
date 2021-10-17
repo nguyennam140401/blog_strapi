@@ -3,6 +3,7 @@ import { Style } from './style.js'
 import Link from 'next/link'
 import * as api from '../../util/api'
 import { AuthContext } from '../../context/AuthContext'
+import Image from 'next/image'
 
 const Navigation = () => {
     const [categoryState, setCategoryState] = useState([])
@@ -31,10 +32,9 @@ const Navigation = () => {
         }
         solve()
     }, [textSearchState])
-    // const logout = () => {
-    //     setAuthToken('')
-    //     window.localStorage.removeItem('blog_strapi_jwt')
-    // }
+    const myLoader = ({ src }) => {
+        return src
+    }
     return (
         <Fragment>
             <Style>
@@ -70,7 +70,12 @@ const Navigation = () => {
                                                     >
                                                         <a>
                                                             <div className="result_img">
-                                                                <img
+                                                                <Image
+                                                                    loader={
+                                                                        myLoader
+                                                                    }
+                                                                    objectFit="cover"
+                                                                    layout="fill"
                                                                     src={`http://localhost:1337${item.image[0].url}`}
                                                                     alt=""
                                                                 />

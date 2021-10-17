@@ -1,7 +1,11 @@
 import React, { Fragment } from 'react'
 import { Style } from './style.js'
 import ReactMarkdown from 'react-markdown'
+import Image from 'next/image'
 const BlogDetail = ({ data }) => {
+    const myLoader = ({ src }) => {
+        return src
+    }
     return (
         <Fragment>
             <Style>
@@ -10,6 +14,9 @@ const BlogDetail = ({ data }) => {
                         <>
                             <h2>{data.title}</h2>
                             <img
+                                loader={myLoader}
+                                objectFit="cover"
+                                layout="fill"
                                 src={`http://localhost:1337${data.image[0].url}`}
                                 alt="anh chi tiet"
                             />

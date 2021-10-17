@@ -2,6 +2,7 @@ import React, { Fragment, useEffect, useState } from 'react'
 import { getPostOfCategory } from '../../util/api'
 import { Style } from './style.js'
 import Link from 'next/link'
+import Image from 'next/image'
 const SideBar = ({ id }) => {
     const [postState, setPostState] = useState([])
     const [textSearch, setTextSearch] = useState('')
@@ -17,6 +18,9 @@ const SideBar = ({ id }) => {
         }
         solve()
     }, [id, textSearch])
+    const myLoader = ({ src }) => {
+        return src
+    }
     return (
         <Fragment>
             <Style>
@@ -45,7 +49,12 @@ const SideBar = ({ id }) => {
                                                   <a>
                                                       <Fragment>
                                                           <div className="img">
-                                                              <img
+                                                              <Image
+                                                                  layout="fill"
+                                                                  objectFit="cover"
+                                                                  loader={
+                                                                      myLoader
+                                                                  }
                                                                   src={`http://localhost:1337${item.image[0].url}`}
                                                                   alt=""
                                                               />

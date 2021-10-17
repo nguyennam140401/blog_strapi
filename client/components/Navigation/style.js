@@ -47,6 +47,9 @@ export const Style = styled.div`
                             display: flex;
                             text-decoration: none;
                             color: #000;
+                            .result_img {
+                                position: relative;
+                            }
                             img {
                                 width: 100px;
                                 height: 100px;

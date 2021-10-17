@@ -31,7 +31,8 @@ export const Style = styled.div`
                         width: 100px;
                         height: 100px;
                         flex: 1;
-                        object-fit: contain;
+                        /* object-fit: contain; */
+                        position: relative;
                         img {
                             object-fit: center;
                             width: 100%;

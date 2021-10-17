@@ -2,6 +2,7 @@ import React, { Fragment, useState, useEffect } from 'react'
 import { getFeatured } from '../../util/api'
 import ReactMarkdown from 'react-markdown'
 import { Style } from './style'
+import Image from 'next/image'
 const Featured = () => {
     const [featuredState, setFeaturedState] = useState([])
     useEffect(() => {
@@ -15,6 +16,9 @@ const Featured = () => {
         }
         solve()
     }, [])
+    const myLoader = ({ src }) => {
+        return src
+    }
     return (
         <Style>
             <div className="featured">
@@ -23,7 +27,10 @@ const Featured = () => {
                         return (
                             <div className="featured_item" key={idx}>
                                 <div className="featured_item--img">
-                                    <img
+                                    <Image
+                                        loader={myLoader}
+                                        layout="fill"
+                                        objectFit="cover"
                                         src={`http://localhost:1337${item.image.url}`}
                                         alt=""
                                     />
