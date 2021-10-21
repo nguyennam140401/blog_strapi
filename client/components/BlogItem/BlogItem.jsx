@@ -4,17 +4,20 @@ import Link from 'next/link'
 import Image from 'next/image'
 // import ReactMarkdown from 'react-markdown'
 const BlogItem = ({ data }) => {
-    const src = `http://localhost:1337${data.image[0].url}`
+    // const src = `http://localhost:1337${data.image[0].url}`
+    const myLoader = ({ src }) => {
+        return src
+    }
     return (
         <Fragment>
             <Style>
                 <div className="blogItem">
                     <div className="blog_img">
                         <Image
-                            loader={() => src}
+                            loader={myLoader}
                             layout="fill"
                             objectFit="cover"
-                            src={src}
+                            src={`http://localhost:1337${data.image[0].url}`}
                             alt={data.title}
                         />
                     </div>

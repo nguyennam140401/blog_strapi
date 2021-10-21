@@ -1,7 +1,7 @@
 import React, { Fragment, useState, useContext } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
-import { Style } from './style.js'
+import { Style } from '../../styles/loginDetail'
 import { AuthContext } from '../../context/AuthContext'
 import { AlertContext } from '../../context/AlertContext.js'
 const Login = () => {

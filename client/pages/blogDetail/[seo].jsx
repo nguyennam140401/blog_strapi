@@ -1,7 +1,7 @@
 import React, { Fragment, useEffect, useState } from 'react'
 import * as api from '../../util/api'
 
-import { Style } from './style.js'
+import { Style } from '../../styles/blogDetail.js'
 import BlogDetail from '../../components/BlogDetail/BlogDetail'
 import SideBar from '../../components/SideBar/SideBar'
 import { useRouter } from 'next/router'

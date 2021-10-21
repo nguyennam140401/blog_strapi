@@ -3,7 +3,7 @@ import { getFeatured } from '../../util/api'
 import ReactMarkdown from 'react-markdown'
 import { Style } from './style'
 import Image from 'next/image'
-const Featured = () => {
+const Featured = (props) => {
     const [featuredState, setFeaturedState] = useState([])
     useEffect(() => {
         const solve = async () => {

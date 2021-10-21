@@ -13,13 +13,15 @@ const BlogDetail = ({ data }) => {
                     {data && (
                         <>
                             <h2>{data.title}</h2>
-                            <img
-                                loader={myLoader}
-                                objectFit="cover"
-                                layout="fill"
-                                src={`http://localhost:1337${data.image[0].url}`}
-                                alt="anh chi tiet"
-                            />
+                            <div className="detail_img">
+                                <Image
+                                    loader={myLoader}
+                                    objectFit="cover"
+                                    layout="fill"
+                                    src={`http://localhost:1337${data.image[0].url}`}
+                                    alt="anh chi tiet"
+                                />
+                            </div>
                             <div className="contain_deat">
                                 <ReactMarkdown>
                                     {data.description}

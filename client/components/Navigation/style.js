@@ -47,14 +47,11 @@ export const Style = styled.div`
                             display: flex;
                             text-decoration: none;
                             color: #000;
+                            align-items: center;
                             .result_img {
-                                position: relative;
+                                /* padding-top: 20px; */
                             }
-                            img {
-                                width: 100px;
-                                height: 100px;
-                                object-fit: contain;
-                            }
+
                             .result_contain {
                                 padding: 1rem;
                                 width: 100%;

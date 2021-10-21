@@ -75,7 +75,8 @@ const Navigation = () => {
                                                                         myLoader
                                                                     }
                                                                     objectFit="cover"
-                                                                    layout="fill"
+                                                                    width="100"
+                                                                    height="100"
                                                                     src={`http://localhost:1337${item.image[0].url}`}
                                                                     alt=""
                                                                 />

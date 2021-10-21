@@ -1,7 +1,7 @@
 import React, { Fragment, useState, useContext } from 'react'
 import { useRouter } from 'next/router'
 import Link from 'next/link'
-import { Style } from './style.js'
+import { Style } from '../../styles/registerStyle'
 import { register } from '../../util/api'
 import AlertMessage from '../../components/AlertMessage/AlertMessage'
 import { AlertContext } from '../../context/AlertContext'
