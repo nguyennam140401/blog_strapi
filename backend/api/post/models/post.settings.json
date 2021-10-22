@@ -37,6 +37,10 @@
     "category": {
       "model": "categories",
       "via": "posts"
+    },
+    "orders": {
+      "via": "posts",
+      "collection": "order"
     }
   }
 }

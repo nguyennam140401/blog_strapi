@@ -1,0 +1,50 @@
+import styled from 'styled-components'
+export const Style = styled.div`
+    .sidebar {
+        border-left: 1px solid #ccc;
+        padding-left: 1rem;
+        form {
+            display: flex;
+            margin: 1rem 0;
+            box-shadow: 4px 4px 40px 0 var(--bg-light);
+            input,
+            button {
+                border: none;
+                outline: none;
+                padding: 0.25rem 0.5rem;
+            }
+            button {
+                width: max-content;
+            }
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+            margin-top: 1rem;
+            li {
+                a {
+                    display: flex;
+                    margin-bottom: 1rem;
+                    text-decoration: none;
+                    color: #000;
+                    .img {
+                        width: 100px;
+                        height: 100px;
+                        flex: 1;
+                        /* object-fit: contain; */
+                        position: relative;
+                        img {
+                            object-fit: center;
+                            width: 100%;
+                            aspect-ratio: 1;
+                        }
+                        margin-right: 1rem;
+                    }
+                    .sidebar_post_detail {
+                        flex: 3;
+                    }
+                }
+            }
+        }
+    }
+`
