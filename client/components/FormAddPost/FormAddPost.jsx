@@ -1,28 +1,49 @@
-import React, { Fragment, useState } from 'react'
+import React, { Fragment, useState, useEffect } from 'react'
 import { Style } from './style'
+import { getCategory, createPost, uploadImg } from '../../util/api'
 const FormAddPost = () => {
+    const [categoryState, setCategoryState] = useState([])
     const [postDataState, setPostDataState] = useState({
         title: '',
         category: '',
         image: null,
         description: '',
     })
-    const createPost = (event) => {
+    useEffect(() => {
+        const getData = async () => {
+            const res = await getCategory()
+            setCategoryState(res)
+        }
+        getData()
+    }, [])
+    const submitPost = async (event) => {
         event.preventDefault()
-        // event.stopPropagation()
+        console.log('up')
+        try {
+            const dataPost = await createPost(postDataState)
+            const dataImg = {
+                files: postDataState.image,
+                ref: 'post',
+                refId: dataPost.id,
+                field: 'image',
+            }
+            await uploadImg(dataImg)
+            window.alert('ok roi')
+        } catch (error) {
+            console.log(error)
+        }
     }
     const changeInput = (event) => {
         const field = event.target.name
         const value = event.target.value
-        console.log(value)
         setPostDataState({ ...postDataState, [field]: value })
     }
     return (
         <Fragment>
             <Style>
                 <form
+                    onSubmit={submitPost}
                     onClick={(e) => e.stopPropagation()}
-                    onSubmit={createPost}
                 >
                     <div className="form-control">
                         <input
@@ -50,7 +71,22 @@ const FormAddPost = () => {
                             onChange={changeInput}
                         />
                     </div>
-                    <button onClick={createPost}>Submit</button>
+                    <div className="form-control">
+                        <select
+                            name="category"
+                            value={postDataState.category}
+                            onChange={changeInput}
+                        >
+                            {categoryState.map((item, idx) => {
+                                return (
+                                    <option key={idx} value={item.id}>
+                                        {item.name}
+                                    </option>
+                                )
+                            })}
+                        </select>
+                    </div>
+                    <button>Submit</button>
                 </form>
             </Style>
         </Fragment>

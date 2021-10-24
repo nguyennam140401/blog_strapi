@@ -51,3 +51,12 @@ export const login = async (data) => {
     const res = await axios.post(`${uri}/auth/local`, data)
     return res.data
 }
+export const createPost = async (data) => {
+    const res = await axios.post(`${uri}/posts`, data)
+    return res.data
+}
+export const uploadImg = async (data) => {
+    console.log(data)
+    const res = await axios.post(`${uri}/upload`, data)
+    return res.data
+}
