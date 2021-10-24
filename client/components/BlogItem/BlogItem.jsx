@@ -13,13 +13,17 @@ const BlogItem = ({ data }) => {
             <Style>
                 <div className="blogItem">
                     <div className="blog_img">
-                        <Image
-                            loader={myLoader}
-                            layout="fill"
-                            objectFit="cover"
-                            src={`http://localhost:1337${data.image[0].url}`}
-                            alt={data.title}
-                        />
+                        {data.image[0] ? (
+                            <Image
+                                loader={myLoader}
+                                layout="fill"
+                                objectFit="cover"
+                                src={`http://localhost:1337${data.image[0].url}`}
+                                alt={data.title}
+                            />
+                        ) : (
+                            <img src="" alt="" />
+                        )}
                     </div>
                     <div className="blog_infor">
                         <h4>{data.title}</h4>

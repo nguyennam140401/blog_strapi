@@ -25,6 +25,7 @@ const Login = () => {
         event.preventDefault()
         try {
             const res = await loginUser(dataFormState)
+            console.log(dataFormState)
             if (res.success === true) {
                 setAlertContext({
                     status: true,

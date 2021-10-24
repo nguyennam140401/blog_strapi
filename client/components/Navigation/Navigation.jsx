@@ -4,7 +4,7 @@ import Link from 'next/link'
 import * as api from '../../util/api'
 import { AuthContext } from '../../context/AuthContext'
 import Image from 'next/image'
-
+import UserNavigation from '../UserNavigation/UserNavigation.jsx'
 const Navigation = () => {
     const [categoryState, setCategoryState] = useState([])
     const [textSearchState, setTextSearchState] = useState('')
@@ -137,7 +137,7 @@ const Navigation = () => {
                                 )}
                             </li> */}
                             {authState.isAuthenticated ? (
-                                <li onClick={logoutUser}>Logout</li>
+                                <UserNavigation />
                             ) : (
                                 <li>
                                     <Link href="/login">Login</Link>

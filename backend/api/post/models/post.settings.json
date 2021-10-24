@@ -41,6 +41,11 @@
     "orders": {
       "via": "posts",
       "collection": "order"
+    },
+    "author": {
+      "plugin": "users-permissions",
+      "model": "user",
+      "via": "posts"
     }
   }
 }
