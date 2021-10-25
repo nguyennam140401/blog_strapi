@@ -6,7 +6,6 @@ const FormAddPost = () => {
     const [postDataState, setPostDataState] = useState({
         title: '',
         category: '',
-        image: null,
         description: '',
     })
     useEffect(() => {
@@ -18,24 +17,43 @@ const FormAddPost = () => {
     }, [])
     const submitPost = async (event) => {
         event.preventDefault()
-        console.log('up')
-        try {
-            const dataPost = await createPost(postDataState)
-            const dataImg = {
-                files: postDataState.image,
-                ref: 'post',
-                refId: dataPost.id,
-                field: 'image',
+
+        const formData = new FormData()
+
+        const formElements = event.target.querySelectorAll('input')
+        // const data = {}
+        for (let i = 0; i < formElements.length; i++) {
+            const currentElement = formElements[i]
+            if (!['submit', 'file'].includes(currentElement.type)) {
+            } else if (currentElement.type === 'file') {
+                for (let i = 0; i < currentElement.files.length; i++) {
+                    const file = currentElement.files[i]
+                    formData.append(
+                        `files.${currentElement.name}`,
+                        file,
+                        file.name
+                    )
+                }
             }
-            await uploadImg(dataImg)
-            window.alert('ok roi')
+        }
+        setPostDataState({
+            ...postDataState,
+            seo: postDataState.title.trim().replace(/ /g, '-'),
+        })
+        console.log(postDataState)
+        formData.append('data', JSON.stringify(postDataState))
+        try {
+            const res = await createPost(formData)
+            console.log(res)
         } catch (error) {
             console.log(error)
         }
     }
     const changeInput = (event) => {
+        if (event.target.type === 'file') return
         const field = event.target.name
         const value = event.target.value
+        // console.log([event.target])
         setPostDataState({ ...postDataState, [field]: value })
     }
     return (

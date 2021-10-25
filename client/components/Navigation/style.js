@@ -126,6 +126,7 @@ export const Style = styled.div`
                             content: ' ';
                             width: 100%;
                             height: 30px;
+                            background-color: var(--primary-color);
                             position: absolute;
                             background-color: transparent;
                             top: -15px;

@@ -16,14 +16,15 @@ module.exports = {
   async create(ctx) {
     let entity;
 
-    ctx.request.body.seo = ctx.request.body.title.trim().replace(/ /g, "-");
-    console.log(ctx.request.body);
+    // ctx.request.body.seo = ctx.request.body.title.trim().replace(/ /g, "-");
+
     if (ctx.is("multipart")) {
       const { data, files } = parseMultipartData(ctx);
       data.author = ctx.state.user.id;
       entity = await strapi.services.post.create(data, { files });
     } else {
       ctx.request.body.author = ctx.state.user.id;
+
       entity = await strapi.services.post.create(ctx.request.body);
     }
     return sanitizeEntity(entity, { model: strapi.models.post });
