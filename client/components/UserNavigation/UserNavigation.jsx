@@ -5,7 +5,6 @@ import { AuthContext } from '../../context/AuthContext.js'
 const UserNavigation = () => {
     // const [showMenu, setShowMenu] = useState(true)
     const { logoutUser } = useContext(AuthContext)
-
     return (
         <Fragment>
             <Style>
@@ -16,7 +15,7 @@ const UserNavigation = () => {
                         <li>
                             <Link href="/profile">Profile</Link>
                         </li>
-                        <li onclick={logoutUser}>Logout</li>
+                        <li onClick={logoutUser}>Logout</li>
                     </ul>
                 </div>
             </Style>

@@ -1,6 +1,7 @@
 import React, { Fragment, useState, useEffect } from 'react'
 import { Style } from './style'
-import { getCategory, createPost, uploadImg } from '../../util/api'
+import { getCategory, createPost } from '../../util/api'
+import Editor from '../Editor'
 const FormAddPost = () => {
     const [categoryState, setCategoryState] = useState([])
     const [postDataState, setPostDataState] = useState({
@@ -8,7 +9,10 @@ const FormAddPost = () => {
         category: '',
         description: '',
     })
+    const [editorLoaded, setEditorLoaded] = useState(false)
+    const [descriptionState, setDescriptionState] = useState('')
     useEffect(() => {
+        setEditorLoaded(true)
         const getData = async () => {
             const res = await getCategory()
             setCategoryState(res)
@@ -36,12 +40,20 @@ const FormAddPost = () => {
                 }
             }
         }
-        setPostDataState({
-            ...postDataState,
-            seo: postDataState.title.trim().replace(/ /g, '-'),
-        })
-        console.log(postDataState)
-        formData.append('data', JSON.stringify(postDataState))
+        console.log(
+            postDataState.title.trim().replace(/ /g, '-'),
+            descriptionState
+        )
+        const result = { ...postDataState }
+        result.seo = postDataState.title.trim().replace(/ /g, '-')
+        result.description = descriptionState
+        // await setPostDataState({
+        //     ...postDataState,
+        //     seo: postDataState.title.trim().replace(/ /g, '-'),
+        //     description: descriptionState,
+        // })
+       
+        formData.append('data', JSON.stringify(result))
         try {
             const res = await createPost(formData)
             console.log(res)
@@ -80,7 +92,7 @@ const FormAddPost = () => {
                             onChange={changeInput}
                         />
                     </div>
-                    <div className="form-control">
+                    {/* <div className="form-control">
                         <input
                             type="text"
                             name="description"
@@ -88,7 +100,15 @@ const FormAddPost = () => {
                             value={postDataState.description}
                             onChange={changeInput}
                         />
-                    </div>
+                    </div> */}
+
+                    <Editor
+                        name="description"
+                        onChange={(data) => {
+                            setDescriptionState(data)
+                        }}
+                        editorLoaded={editorLoaded}
+                    />
                     <div className="form-control">
                         <select
                             name="category"

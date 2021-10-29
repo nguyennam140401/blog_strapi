@@ -8,6 +8,7 @@ import Head from 'next/head'
 import AuthContextProvider from '../context/AuthContext'
 import CategoryContextProvider from '../context/CategoryContext'
 import AlertContextProvider from '../context/AlertContext'
+import SortContextProvider from '../context/SortContext'
 import AlertMessage from '../components/AlertMessage/AlertMessage'
 import { useRouter } from 'next/router'
 import NProgress from 'nprogress'
@@ -48,9 +49,11 @@ function MyApp({ Component, pageProps }) {
                 <AlertContextProvider>
                     <AlertMessage />
                     <CategoryContextProvider>
-                        <Navigation />
-                        {getLayout(<Component {...pageProps} />)}
-                        <Footer></Footer>
+                        <SortContextProvider>
+                            <Navigation />
+                            {getLayout(<Component {...pageProps} />)}
+                            <Footer></Footer>
+                        </SortContextProvider>
                     </CategoryContextProvider>
                 </AlertContextProvider>
             </AuthContextProvider>

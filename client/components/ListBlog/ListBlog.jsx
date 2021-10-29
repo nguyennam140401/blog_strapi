@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react'
 import BlogItem from '../BlogItem/BlogItem'
 import { Style } from './style.js'
-
+import Filter from '../Filter/Filter'
 const ListBlog = ({ data, limit }) => {
     if (data.length === 0) return <Fragment>Chưa có bài viết nào</Fragment>
     return (

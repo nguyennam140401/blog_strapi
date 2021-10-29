@@ -1,25 +1,30 @@
-import React, { Fragment, useState, useEffect } from 'react'
+import React, { Fragment, useState, useEffect, useContext } from 'react'
 
-import { getOneCategory } from '../../util/api'
+import { getOneCategory, getPostOfCategory } from '../../util/api'
 // import { useParams } from 'react-router'
 import ListBlog from '../../components/ListBlog/ListBlog'
 import { useRouter } from 'next/router'
-const CategoryBlogPage = ({ postState }) => {
-    // console.log(postState)
-    // const router = useRouter()
-    // const { seo } = router.query
-    // const [postState, setPostState] = useState([])
-    // useEffect(async () => {
-    //     try {
-    //         const res = await getOneCategory(seo)
-    //         setPostState(res.posts)
-    //     } catch (error) {
-    //         console.log(error)
-    //     }
-    // }, [seo])
+import { SortContext } from '../../context/SortContext'
+import Filter from '../../components/Filter/Filter'
+const CategoryBlogPage = ({ postState, id }) => {
+    const { sortState } = useContext(SortContext)
+    console.log(postState, id)
+    const router = useRouter()
+    const { seo } = router.query
+    const [postsState, setPostsState] = useState(postState)
+    useEffect(async () => {
+        try {
+            const res = await getPostOfCategory(id, '', sortState)
+            console.log(res)
+            setPostsState(res)
+        } catch (error) {
+            console.log(error)
+        }
+    }, [sortState, seo])
     return (
         <Fragment>
-            <ListBlog data={postState}></ListBlog>
+            <Filter />
+            <ListBlog data={postsState}></ListBlog>
         </Fragment>
     )
 }
@@ -27,7 +32,7 @@ export async function getServerSideProps(context) {
     const { seo } = context.params
     const res = await getOneCategory(seo)
     return {
-        props: { postState: res.posts },
+        props: { postState: res.posts, id: res.id },
     }
 }
 export default CategoryBlogPage

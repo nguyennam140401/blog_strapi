@@ -1,6 +1,7 @@
 import React, { Fragment } from 'react'
 import { Style } from './style.js'
-import ReactMarkdown from 'react-markdown'
+// import ReactMarkdown from 'react-markdown'
+import parse from 'html-react-parser'
 import Image from 'next/image'
 const BlogDetail = ({ data }) => {
     const myLoader = ({ src }) => {
@@ -23,9 +24,8 @@ const BlogDetail = ({ data }) => {
                                 />
                             </div>
                             <div className="contain_deat">
-                                <ReactMarkdown>
-                                    {data.description}
-                                </ReactMarkdown>
+                                {/* <Fragment>{data.description}</Fragment> */}
+                                {parse(data.description)}
                             </div>
                         </>
                     )}
@@ -34,5 +34,4 @@ const BlogDetail = ({ data }) => {
         </Fragment>
     )
 }
-
 export default BlogDetail

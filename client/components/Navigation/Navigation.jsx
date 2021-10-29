@@ -5,6 +5,7 @@ import * as api from '../../util/api'
 import { AuthContext } from '../../context/AuthContext'
 import Image from 'next/image'
 import UserNavigation from '../UserNavigation/UserNavigation.jsx'
+import parse from 'html-react-parser'
 const Navigation = () => {
     const [categoryState, setCategoryState] = useState([])
     const [textSearchState, setTextSearchState] = useState('')
@@ -86,9 +87,9 @@ const Navigation = () => {
                                                                     {item.title}
                                                                 </h5>
                                                                 <p>
-                                                                    {
+                                                                    {parse(
                                                                         item.description
-                                                                    }
+                                                                    )}
                                                                 </p>
                                                             </div>
                                                         </a>

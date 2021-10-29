@@ -30,6 +30,8 @@ const BlogItem = ({ data }) => {
                         <p>{data.description}</p>
                         <Link href={`/blogDetail/${data.seo}`}>Đọc thêm</Link>
                     </div>
+                    {/* <button>Sửa</button>
+                    <button>Xóa</button> */}
                 </div>
             </Style>
         </Fragment>
